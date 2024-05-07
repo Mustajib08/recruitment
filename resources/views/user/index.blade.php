@@ -1,0 +1,202 @@
+@extends('user.main.master')
+@section('content_user')
+    <section class="featured-job-area">
+        <div class="container">
+            <!-- Count of Job list Start -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="count-job mb-35">
+                        <span>39, 782 Jobs found</span>
+                        <!-- Select job items start -->
+                        <div class="select-job-items">
+                            <span>Sort by</span>
+                            <select name="select">
+                                <option value="">None</option>
+                                <option value="">Full Time</option>
+                                <option value="">Part Time</option>
+                            </select>
+                        </div>
+                        <!--  Select job items End-->
+                    </div>
+                </div>
+            </div>
+            <!-- Count of Job list End -->
+            <!-- single-job-content -->
+            <div class="single-job-items mb-30">
+                <div class="job-items">
+                    <div class="company-img">
+                        <a href="#"><img src="{{ asset('assets_home') }}/img/icon/job-list1.png" alt=""></a>
+                    </div>
+                    <div class="job-tittle job-tittle2">
+                        <a href="#">
+                            <h4>Digital Marketer</h4>
+                        </a>
+                        <ul>
+                            <li>Creative Agency</li>
+                            <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
+                            <li>$3500 - $4000</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="items-link items-link2 f-right">
+                    <a href="job_details.html">Full Time</a>
+                    <span>7 hours ago</span>
+                </div>
+            </div>
+            <!-- single-job-content -->
+            <div class="single-job-items mb-30">
+                <div class="job-items">
+                    <div class="company-img">
+                        <a href="#"><img src="{{ asset('assets_home') }}/img/icon/job-list2.png" alt=""></a>
+                    </div>
+                    <div class="job-tittle job-tittle2">
+                        <a href="#">
+                            <h4>Digital Marketer</h4>
+                        </a>
+                        <ul>
+                            <li>Creative Agency</li>
+                            <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
+                            <li>$3500 - $4000</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="items-link items-link2 f-right">
+                    <a href="job_details.html">Full Time</a>
+                    <span>7 hours ago</span>
+                </div>
+            </div>
+            <!-- single-job-content -->
+            <div class="single-job-items mb-30">
+                <div class="job-items">
+                    <div class="company-img">
+                        <a href="#"><img src="{{ asset('assets_home') }}/img/icon/job-list3.png" alt=""></a>
+                    </div>
+                    <div class="job-tittle job-tittle2">
+                        <a href="#">
+                            <h4>Digital Marketer</h4>
+                        </a>
+                        <ul>
+                            <li>Creative Agency</li>
+                            <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
+                            <li>$3500 - $4000</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="items-link items-link2 f-right">
+                    <a href="job_details.html">Full Time</a>
+                    <span>7 hours ago</span>
+                </div>
+            </div>
+            <!-- single-job-content -->
+            <div class="single-job-items mb-30">
+                <div class="job-items">
+                    <div class="company-img">
+                        <a href="#"><img src="{{ asset('assets_home') }}/img/icon/job-list4.png" alt=""></a>
+                    </div>
+                    <div class="job-tittle job-tittle2">
+                        <a href="#">
+                            <h4>Digital Marketer</h4>
+                        </a>
+                        <ul>
+                            <li>Creative Agency</li>
+                            <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
+                            <li>$3500 - $4000</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="items-link items-link2 f-right">
+                    <a href="job_details.html">Full Time</a>
+                    <span>7 hours ago</span>
+                </div>
+            </div>
+            <!-- single-job-content -->
+            <div class="single-job-items mb-30">
+                <div class="job-items">
+                    <div class="company-img">
+                        <a href="#"><img src="{{ asset('assets_home') }}/img/icon/job-list1.png" alt=""></a>
+                    </div>
+                    <div class="job-tittle job-tittle2">
+                        <a href="#">
+                            <h4>Digital Marketer</h4>
+                        </a>
+                        <ul>
+                            <li>Creative Agency</li>
+                            <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
+                            <li>$3500 - $4000</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="items-link items-link2 f-right">
+                    <a href="job_details.html">Full Time</a>
+                    <span>7 hours ago</span>
+                </div>
+            </div>
+            <!-- single-job-content -->
+            <div class="single-job-items mb-30">
+                <div class="job-items">
+                    <div class="company-img">
+                        <a href="#"><img src="{{ asset('assets_home') }}/img/icon/job-list3.png" alt=""></a>
+                    </div>
+                    <div class="job-tittle job-tittle2">
+                        <a href="#">
+                            <h4>Digital Marketer</h4>
+                        </a>
+                        <ul>
+                            <li>Creative Agency</li>
+                            <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
+                            <li>$3500 - $4000</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="items-link items-link2 f-right">
+                    <a href="job_details.html">Full Time</a>
+                    <span>7 hours ago</span>
+                </div>
+            </div>
+            <!-- single-job-content -->
+            <div class="single-job-items mb-30">
+                <div class="job-items">
+                    <div class="company-img">
+                        <a href="#"><img src="{{ asset('assets_home') }}/img/icon/job-list4.png" alt=""></a>
+                    </div>
+                    <div class="job-tittle job-tittle2">
+                        <a href="#">
+                            <h4>Digital Marketer</h4>
+                        </a>
+                        <ul>
+                            <li>Creative Agency</li>
+                            <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
+                            <li>$3500 - $4000</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="items-link items-link2 f-right">
+                    <a href="job_details.html">Full Time</a>
+                    <span>7 hours ago</span>
+                </div>
+            </div>
+        </div>
+
+        <!--Pagination Start  -->
+        <div class="pagination-area pb-115 text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="single-wrap d-flex justify-content-end ">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-start">
+                                    <li class="page-item active"><a class="page-link" href="#">01</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">02</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">03</a></li>
+                                    <li class="page-item"><a class="page-link" href="#"><span
+                                                class="ti-angle-right"></span></a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Pagination End  -->
+    </section>
+@endsection
