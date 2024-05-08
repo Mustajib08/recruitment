@@ -11,8 +11,8 @@
                 <div class="col-lg-9 col-md-9">
                     <div class="menu-wrapper">
                         <div class="ml-auto header-btn d-none f-right d-lg-block">
-                            <a href="#" class="btn head-btn1">Register</a>
-                            <a href="#" class="btn head-btn2">Login</a>
+                            <a href="{{ route('register') }}" class="btn head-btn1">Register</a>
+                            <a href="{{ route('login') }}" class="btn head-btn2">Login</a>
                         </div>
                     </div>
                 </div>

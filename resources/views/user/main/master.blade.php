@@ -7,8 +7,6 @@
     <title>Job board HTML-5 Template </title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="manifest" href="site.webmanifest">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets_home') }}/img/favicon.ico">
 
     <!-- CSS here -->
     <link rel="stylesheet" href="{{ asset('assets_home') }}/css/bootstrap.min.css">
