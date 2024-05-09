@@ -5,7 +5,8 @@
                 <div class="col-lg-3 col-md-2">
                     <!-- Logo -->
                     <div class="logo">
-                        <a href="index.html"><img src="{{ asset('assets_home') }}/img/logo/logo.png" alt=""></a>
+                        <a href="{{ url('/') }}"><img src="{{ asset('assets_home') }}/img/logo/logo.png"
+                                alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-9 col-md-9">

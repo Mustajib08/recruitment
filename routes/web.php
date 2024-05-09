@@ -3,6 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\KategoriLokerController;
+use App\Http\Controllers\KelolaLokerController;
+use App\Http\Controllers\KelolaPelamarController;
+use App\Http\Controllers\PenggunaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +30,10 @@ Route::get('/', function () {
     return view('user.index');
 });
 
+Route::get('/detail_loker', function () {
+    return view('user.detail_loker');
+})->name('detail_loker');
+
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 
@@ -37,5 +45,33 @@ Route::prefix('/find-job')->group(function () {
 /* Route Admin */
 Route::prefix('admin')->controller(AdminController::class)->group(function () {
     Route::get('/', 'index')->name('admin.index');
+});
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+/* Kategori Loker */
+Route::prefix('kategori_loker')->controller(KategoriLokerController::class,)->group(function () {
+    Route::get('/', 'kategori_loker')->name('kategori_loker');
+});
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+/* Kolola Loker */
+Route::prefix('kelola_loker')->controller(KelolaLokerController::class,)->group(function () {
+    Route::get('/', 'kelola_loker')->name('kelola_loker');
+});
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+/* Kolola Pelamar */
+Route::prefix('kelola_pelamar')->controller(KelolaPelamarController::class,)->group(function () {
+    Route::get('/', 'kelola_pelamar')->name('kelola_pelamar');
+});
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+/* Pengguna */
+Route::prefix('pengguna')->controller(PenggunaController::class,)->group(function () {
+    Route::get('/', 'pengguna')->name('pengguna');
 });
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
