@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Purple Admin</title>
+    <title>{{ $title }}</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{ asset('asset_admin') }}/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="{{ asset('asset_admin') }}/vendors/css/vendor.bundle.base.css">
@@ -41,6 +41,9 @@
         </div>
         <!-- page-body-wrapper ends -->
     </div>
+
+    @stack('modal')
+
     <!-- container-scroller -->
     <!-- plugins:js -->
     <script src="{{ asset('asset_admin') }}/vendors/js/vendor.bundle.base.js"></script>
