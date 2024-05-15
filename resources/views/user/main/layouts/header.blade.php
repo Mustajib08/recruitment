@@ -11,6 +11,15 @@
                 </div>
                 <div class="col-lg-9 col-md-9">
                     <div class="menu-wrapper">
+                        <div class="main-menu">
+                            <nav class="d-none d-lg-block">
+                                <ul id="navigation">
+                                    <li><a href="{{ url('/') }}">Home</a></li>
+                                    <li><a href="{{ route('cari_loker') }}">Find a Jobs </a></li>
+                                </ul>
+                            </nav>
+                        </div>
+
                         <div class="ml-auto header-btn d-none f-right d-lg-block">
                             <a href="{{ route('register') }}" class="btn head-btn1">Register</a>
                             <a href="{{ route('login') }}" class="btn head-btn2">Login</a>

@@ -26,20 +26,30 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>
-                                            David Grey
-                                        </td>
-                                        <td> Fund is not recieved </td>
-                                        <td class="text-center">
-                                            <div class="btn-group btn-group-sm" role="group">
-                                                <button type="button" class="btn btn-success"><i
-                                                        class="mdi mdi-tooltip-edit"></i></button>
-                                                <button type="button" class="btn btn-danger"><i
-                                                        class="mdi mdi-delete"></i></button>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    @if ($kategori_loker->count() > 0)
+                                        @foreach ($kategori_loker as $kl)
+                                            <tr>
+                                                <td>
+                                                    {{ $kl->kategori }}
+                                                </td>
+                                                <td> {{ $kl->keterangan }} </td>
+                                                <td class="text-center">
+                                                    <div class="btn-group btn-group-sm" role="group">
+                                                        <button type="button" class="btn btn-success"><i
+                                                                class="mdi mdi-tooltip-edit"></i></button>
+                                                        <button type="button" class="btn btn-danger"><i
+                                                                class="mdi mdi-delete"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    @else
+                                        <tr>
+                                            <td colspan="3" class="text-center">
+                                                <i>data tidak ditemukan</i>
+                                            </td>
+                                        </tr>
+                                    @endif
                                 </tbody>
                             </table>
                         </div>
@@ -60,17 +70,19 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form class="forms-sample">
+                    <form class="forms-sample" method="post" action="{{ route('proses_tambah_kategori_loker') }}">
+                        @csrf
                         <div class="form-group row">
                             <label for="kategori" class="col-sm-3 col-form-label">Kategori</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="kategori" placeholder="Nama Kategori">
+                                <input type="text" class="form-control" id="kategori" name="kategori"
+                                    placeholder="Nama Kategori">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="keterangan" class="col-sm-3 col-form-label">Keterangan</label>
                             <div class="col-sm-9">
-                                <textarea class="form-control" id="keterangan" rows="5" placeholder="Keterangan Kategori"></textarea>
+                                <textarea class="form-control" name="keterangan" id="keterangan" rows="5" placeholder="Keterangan Kategori"></textarea>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-gradient-primary me-2 float-end">Simpan</button>

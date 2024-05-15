@@ -40,7 +40,8 @@
         </div>
         <!-- Job List Area End -->
 
-
+        @section('content_home')
+        @show
     </main>
     <footer>
         <!-- Footer Start-->

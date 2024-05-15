@@ -16,7 +16,7 @@
 </head>
 
 <body>
-
+    @include('sweetalert::alert')
     @yield('content_auth')
 
     <script src="js/jquery.min.js"></script>

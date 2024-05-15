@@ -10,17 +10,19 @@
                                 <h3 class="mb-4">Masuk</h3>
                             </div>
                         </div>
-                        <form action="#" class="login-form">
+                        <form action="{{ route('proses_login') }}" class="login-form" method="post">
+                            @csrf
                             <div class="form-group">
                                 <div class="icon d-flex align-items-center justify-content-center"><span
                                         class="fa fa-user"></span></div>
-                                <input type="text" class="form-control rounded-left" placeholder="Nama Pengguna"
-                                    required>
+                                <input type="text" class="form-control rounded-left" name="username"
+                                    placeholder="Nama Pengguna" required>
                             </div>
                             <div class="form-group">
                                 <div class="icon d-flex align-items-center justify-content-center"><span
                                         class="fa fa-lock"></span></div>
-                                <input type="password" class="form-control rounded-left" placeholder="Kata Sandi" required>
+                                <input type="password" class="form-control rounded-left" name="password"
+                                    placeholder="Kata Sandi" required>
                             </div>
                             <div class="form-group d-flex align-items-center">
                                 <div class="w-100 d-flex justify-content-end">
