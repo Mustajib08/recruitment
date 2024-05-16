@@ -62,6 +62,8 @@ Route::middleware('auth')->group(function () {
     Route::prefix('kategori_loker')->controller(KategoriLokerController::class,)->group(function () {
         Route::get('/', 'kategori_loker')->name('kategori_loker');
         Route::post('/', 'proses_tambah_kategori_loker')->name('proses_tambah_kategori_loker');
+        Route::delete('/', 'proses_delete_kategori')->name('proses_delete_kategori');
+        Route::post('/proses_update_kategori', 'proses_update_kategori')->name('proses_update_kategori');
     });
     /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 

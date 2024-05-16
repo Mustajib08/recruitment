@@ -8,7 +8,7 @@
                     <!--change to offline or busy as needed-->
                 </div>
                 <div class="nav-profile-text d-flex flex-column">
-                    <span class="font-weight-bold mb-2">Subhan Fadilah</span>
+                    <span class="font-weight-bold mb-2">{{ auth()->user()->nama }}</span>
                     <span class="text-secondary text-small">Super Admin</span>
                 </div>
             </a>

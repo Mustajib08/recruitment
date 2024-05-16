@@ -35,13 +35,48 @@
                                                 <td> {{ $kl->keterangan }} </td>
                                                 <td class="text-center">
                                                     <div class="btn-group btn-group-sm" role="group">
-                                                        <button type="button" class="btn btn-success"><i
+                                                        <button type="button" class="btn btn-success tombolEdit"
+                                                            id="tombolEdit" data-idkategori="{{ $kl->id }}"
+                                                            data-kategori="{{ $kl->kategori }}"
+                                                            data-keterangan="{{ $kl->keterangan }}" data-bs-toggle="modal"
+                                                            data-bs-target="#modalEdit"><i
                                                                 class="mdi mdi-tooltip-edit"></i></button>
-                                                        <button type="button" class="btn btn-danger"><i
+                                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                            data-bs-target="#modalDelete{{ $kl->id }}"><i
                                                                 class="mdi mdi-delete"></i></button>
                                                     </div>
                                                 </td>
                                             </tr>
+
+                                            {{-- modal delete --}}
+                                            <div class="modal fade" id="modalDelete{{ $kl->id }}"
+                                                data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                                aria-labelledby="modalDeleteLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header bg-danger">
+                                                            <h4 class="modal-title text-white" id="modalDeleteLabel">
+                                                                Konfirmasi <i class="mdi mdi-comment-question-outline"></i>
+                                                            </h4>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form class="forms-sample" method="post"
+                                                                action="{{ route('proses_delete_kategori') }}">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                Apakah Anda Yakin Ingin Menghapus Kategori ?
+                                                                <input type="hidden" name="delete_kategori"
+                                                                    value="{{ $kl->id }}">
+                                                                <button type="submit"
+                                                                    class="btn btn-sm btn-danger me-2 mt-4 float-end"><i
+                                                                        class="mdi mdi-delete"></i> Hapus</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         @endforeach
                                     @else
                                         <tr>
@@ -91,4 +126,52 @@
             </div>
         </div>
     </div>
+
+    {{-- modal edit --}}
+    <div class="modal fade" id="modalEdit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="modalEditLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalEditLabel">
+                        Perbarui Kategori
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form class="forms-sample" method="post" action="{{ route('proses_update_kategori') }}">
+                        @csrf
+                        <input type="hidden" name="id_kategori" id="valueKategoriID">
+                        <div class="form-group row">
+                            <label for="kategori" class="col-sm-3 col-form-label">Kategori</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="editKategori" name="kategori"
+                                    placeholder="Nama Kategori">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="keterangan" class="col-sm-3 col-form-label">Keterangan</label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" name="keterangan" id="editKeterangan" rows="5"
+                                    placeholder="Keterangan Kategori"></textarea>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-gradient-primary me-2 float-end">Simpan</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+@endpush
+
+@push('script')
+    <script>
+        $(document).ready(function() {
+            $(document).on('click', '.tombolEdit', function() {
+                $('#valueKategoriID').val($(this).attr('data-idkategori'));
+                $("#editKategori").val($(this).attr('data-kategori'));
+                $("#editKeterangan").val($(this).attr('data-keterangan'));
+            })
+        })
+    </script>
 @endpush

@@ -13,7 +13,7 @@ class KategoriLokerController extends Controller
     {
         return view('admin.kategori_loker.kategori_loker', [
             'title' => 'Kategori Loker',
-            'kategori_loker' => KategoriLoker::all()
+            'kategori_loker' => KategoriLoker::latest()->get()
         ]);
     }
 
@@ -32,6 +32,35 @@ class KategoriLokerController extends Controller
         KategoriLoker::create($request->all());
 
         Alert::toast('Berhasil Menambahkan Kategori', 'success')->width('auto');
+        return back();
+    }
+
+    public function proses_delete_kategori(Request $request)
+    {
+        KategoriLoker::where('id', $request->delete_kategori)->delete();
+
+        Alert::toast('Berhasil Menghapus Kategori', 'success')->width('auto');
+        return back();
+    }
+
+    public function proses_update_kategori(Request $request)
+    {
+        $validasi = Validator::make($request->all(), [
+            'kategori' => 'required',
+            'keterangan' => 'required',
+        ]);
+
+        if ($validasi->fails()) {
+            Alert::toast('Gagal Memperbarui Kategori', 'error')->width('auto');
+            return back();
+        }
+
+        KategoriLoker::find($request->id_kategori)->update([
+            'kategori' => $request->kategori,
+            'keterangan' => $request->keterangan
+        ]);
+
+        Alert::toast('Berhasil Memperbarui Kategori', 'success')->width('auto');
         return back();
     }
 }
