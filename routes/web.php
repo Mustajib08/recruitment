@@ -71,6 +71,13 @@ Route::middleware('auth')->group(function () {
     /* Kolola Loker */
     Route::prefix('kelola_loker')->controller(KelolaLokerController::class,)->group(function () {
         Route::get('/', 'kelola_loker')->name('kelola_loker');
+        Route::post('/', 'proses_tambah_loker')->name('proses_tambah_loker');
+        Route::delete('/', 'proses_delete_loker')->name('proses_delete_loker');
+        Route::post('/proses_update_loker', 'proses_update_loker')->name('proses_update_loker');
+        Route::get('/{loker:id}/detail', 'detail_loker')->name('detail_loker');
+        Route::post('/proses_tambah_pertanyaan', 'proses_tambah_pertanyaan')->name('proses_tambah_pertanyaan');
+        Route::delete('/proses_delete_pertanyaan', 'proses_delete_pertanyaan')->name('proses_delete_pertanyaan');
+        Route::post('/proses_update_pertanyaan', 'proses_update_pertanyaan')->name('proses_update_pertanyaan');
     });
     /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 

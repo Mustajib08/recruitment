@@ -41,6 +41,7 @@
                                                             data-keterangan="{{ $kl->keterangan }}" data-bs-toggle="modal"
                                                             data-bs-target="#modalEdit"><i
                                                                 class="mdi mdi-tooltip-edit"></i></button>
+
                                                         <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                                             data-bs-target="#modalDelete{{ $kl->id }}"><i
                                                                 class="mdi mdi-delete"></i></button>
