@@ -1,12 +1,14 @@
 <?php
 
+use App\Models\Loker;
+use App\Models\KategoriLoker;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\KategoriLokerController;
-use App\Http\Controllers\KelolaLokerController;
-use App\Http\Controllers\KelolaPelamarController;
 use App\Http\Controllers\PenggunaController;
+use App\Http\Controllers\KelolaLokerController;
+use App\Http\Controllers\KategoriLokerController;
+use App\Http\Controllers\KelolaPelamarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,12 +33,17 @@ Route::get('/', function () {
 });
 
 Route::get('/cari-loker', function () {
-    return view('user.index');
+    return view('user.index', [
+        'kategori_lokers' => KategoriLoker::all(),
+        'lokers' => Loker::all(),
+    ]);
 })->name('cari_loker');
 
-Route::get('/detail_loker', function () {
-    return view('user.detail_loker');
-})->name('detail_loker');
+Route::get('/cari_loker/{loker:id}/detail', function (Loker $loker) {
+    return view('user.detail_loker', [
+        'loker' => $loker
+    ]);
+})->name('detail_loker_user');
 
 Route::get('/login', [AuthController::class, 'login'])->name('login')->middleware('guest');
 Route::post('/login', [AuthController::class, 'proses_login'])->name('proses_login');
