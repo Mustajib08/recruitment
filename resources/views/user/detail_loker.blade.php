@@ -47,14 +47,14 @@
                         <ul>
                             <li>Posted date : <span>{{ $loker->created_at->diffForHumans() }}</span></li>
                             <li>Location : <span>New York</span></li>
-                            <li>Vacancy : <span>02 Orang</span></li>
+                            <li>Vacancy : <span>2 Orang</span></li>
                             <li>Job nature : <span>Full time</span></li>
                             <li>Salary : <span>Rp. {{ $loker->salary }}</span></li>
                             <li>Dibuka : <span>{{ $loker->tanggal_buka }}</span></li>
                             <li>Berakhir : <span>{{ $loker->tanggal_tutup }}</span></li>
                         </ul>
                         <div class="apply-btn2">
-                            <a href="#" class="btn">Apply Now</a>
+                            <a href="{{ route('applynow', $loker->id) }}" class="btn">Apply Now</a>
                         </div>
                     </div>
                 </div>

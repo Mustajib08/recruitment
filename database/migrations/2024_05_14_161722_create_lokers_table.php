@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('kategori_id');
             $table->string('nama_loker');
-            $table->string('sub_loker');
+            $table->text('sub_loker');
             $table->date('tanggal_buka');
             $table->date('tanggal_tutup');
             $table->string('salary');

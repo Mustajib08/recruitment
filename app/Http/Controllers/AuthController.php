@@ -28,7 +28,11 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('admin');
+            if (auth()->user()->level == 'admin') {
+                return redirect()->intended('admin');
+            } else {
+                return redirect()->intended(route('cari_loker'));
+            }
         }
 
         Alert::toast('Nama Pengguna dan Kata Sandi Salah !', 'error')->width('auto')->timerProgressBar();
@@ -65,5 +69,14 @@ class AuthController extends Controller
 
         Alert::toast('Berhasil Melakukan Pendaftaran', 'success')->width('auto')->timerProgressBar();
         return redirect()->to(route('login'));
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 }

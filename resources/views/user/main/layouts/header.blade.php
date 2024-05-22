@@ -21,8 +21,18 @@
                         </div>
 
                         <div class="ml-auto header-btn d-none f-right d-lg-block">
-                            <a href="{{ route('register') }}" class="btn head-btn1">Register</a>
-                            <a href="{{ route('login') }}" class="btn head-btn2">Login</a>
+                            @auth
+                                <form action="{{ route('logout') }}" method="post">
+                                    @csrf
+                                    <button type="submit" class="p-3 px-5 rounded btn head-btn2"><i
+                                            class="fas fa-sign-out-alt"></i>
+                                        Logout</button>
+                                </form>
+                            @else
+                                <a href="{{ route('register') }}" class="btn head-btn1">Register</a>
+                                <a href="{{ route('login') }}" class="btn head-btn2">Login</a>
+                            @endauth
+
                         </div>
                     </div>
                 </div>

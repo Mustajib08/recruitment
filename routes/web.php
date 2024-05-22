@@ -5,10 +5,13 @@ use App\Models\KategoriLoker;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ApplyNowController;
 use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\KelolaLokerController;
 use App\Http\Controllers\KategoriLokerController;
 use App\Http\Controllers\KelolaPelamarController;
+use App\Http\Middleware\AdminCheck;
+use App\Http\Middleware\UserCheck;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,11 +54,22 @@ Route::post('/login', [AuthController::class, 'proses_login'])->name('proses_log
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register', [AuthController::class, 'proses_daftar'])->name('proses_daftar');
 
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
 Route::prefix('/find-job')->group(function () {
+});
+
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+/* Route Apply Now */
+Route::middleware(UserCheck::class)->prefix('applynow')->controller(ApplyNowController::class)->group(function () {
+    Route::get('/{loker:id}/loker', 'index')->name('applynow');
+    Route::post('/upload_berkas', 'upload_berkas')->name('upload_berkas');
 });
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
-Route::middleware('auth')->group(function () {
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+Route::middleware(AdminCheck::class)->group(function () {
 
     /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
     /* Route Admin */

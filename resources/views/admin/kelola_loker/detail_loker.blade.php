@@ -62,6 +62,7 @@
         </div>
 
 
+        {{-- pertanyaan buat pelamar --}}
         <div class="row" id="cardPertanyaan">
             <div class="col-12 grid-margin">
                 <div class="card">
@@ -154,6 +155,7 @@
                 </div>
             </div>
         </div>
+        {{-- end pertanyaan buat pelamar --}}
     </div>
 @endsection
 
