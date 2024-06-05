@@ -28,6 +28,7 @@ use App\Http\Middleware\UserCheck;
 //     return view('welcome');
 // });
 
+
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 /* Route User Cari Pekerjaan */
 
@@ -64,6 +65,7 @@ Route::prefix('/find-job')->group(function () {
 Route::middleware(UserCheck::class)->prefix('applynow')->controller(ApplyNowController::class)->group(function () {
     Route::get('/{loker:id}/loker', 'index')->name('applynow');
     Route::post('/upload_berkas', 'upload_berkas')->name('upload_berkas');
+    Route::post('/simpan_jawaban', 'jawaban')->name('simpan_jawaban');
 });
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 

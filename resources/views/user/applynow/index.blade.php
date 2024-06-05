@@ -63,19 +63,68 @@
                         </div>
                         <div class="mt-10">
                             <label for="" class="form-label">Alamat</label>
-                            <textarea class="single-textarea" name="alamat" placeholder="Alamat" onfocus="this.placeholder = ''"
-                                onblur="this.placeholder = 'Alamat'" required></textarea>
+                            <textarea class="single-textarea" name="alamat" @if (!empty($data_apply->cv_user)) @readonly(true) @endif
+                                placeholder="Alamat" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Alamat'" required> 
+                                @if (!empty($data_apply->cv_user))
+{{ $data_apply->alamat }}
+@endif
+                            </textarea>
                         </div>
                         <div class="mt-10">
-                            <label for="" class="form-label">Upload CV</label>
-                            <input type="file" required class="single-input" name="cv">
+                            <label for="gambar" class="form-label">
+                                @if (!empty($data_apply->cv_user))
+                                    CV
+                                @else
+                                    Upload CV
+                                @endif
+                            </label>
+                            @if (!empty($data_apply->cv_user))
+                                <img src="{{ asset('storage/' . $data_apply->cv_user) }}" class="img-fluid single-input"
+                                    alt="CV">
+                            @else
+                                <input id="gambar" type="file" required class="single-input" name="image">
+                            @endif
                         </div>
-                        <button type="submit" name="submit" id="newsletter-submit"
-                            class="btn py-3 px-5 rounded mt-4 mb-2 float-right"><i class="fas fa-upload"></i> Upload
-                            Berkas</button>
+                        @if (!empty($data_apply->cv_user))
+                            <button type="submit" name="submit" id="newsletter-submit"
+                                class="btn py-3 px-5 rounded mt-4 mb-2 float-right"><i class="far fa-window-close"></i>
+                                Batal
+                                Upload</button>
+                        @else
+                            <button type="submit" name="submit" id="newsletter-submit"
+                                class="btn py-3 px-5 rounded mt-4 mb-2 float-right"><i class="fas fa-upload"></i> Upload
+                                Berkas</button>
+                        @endif
                     </form>
                 </div>
+
             </div>
+
+            @if (!empty($data_apply->cv_user))
+                <div class="card mt-5">
+                    <div class="card-header">
+                        Jawab Pertanyaan
+                    </div>
+                    <div class="card-body">
+                        <form action="{{ route('simpan_jawaban') }}" method="post">
+                            @csrf
+                            @foreach ($pertanyaan as $prtnyaan)
+                                <div class="mt-10">
+                                    <label for="" class="form-label">{{ $loop->iteration }}.
+                                        {{ $prtnyaan->pertanyaan }}</label>
+                                    <input type="text" id="pertanyaan_{{ $prtnyaan->id }}"
+                                        name="pertanyaan[{{ $prtnyaan->id }}]" placeholder="Jawaban"
+                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Jawaban'" required
+                                        class="single-input">
+                                </div>
+                            @endforeach
+                            <button type="submit" name="submit" id="newsletter-submit"
+                                class="btn py-3 px-5 rounded mt-4 mb-2 float-right"><i class="fas fa-upload"></i> Simpan
+                                Jawaban</button>
+                        </form>
+                    </div>
+                </div>
+            @endif
         </div>
     </div>
 @endsection
