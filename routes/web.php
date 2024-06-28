@@ -37,9 +37,16 @@ Route::get('/', function () {
 });
 
 Route::get('/cari-loker', function () {
+
+    if (request('kategori')) {
+        $loker = Loker::where('kategori_id', request('kategori'))->paginate(5);
+    } else {
+        $loker = Loker::latest()->paginate(5);
+    }
+
     return view('user.index', [
-        'kategori_lokers' => KategoriLoker::all(),
-        'lokers' => Loker::all(),
+        'kategori_lokers' => KategoriLoker::latest()->get(),
+        'lokers' => $loker,
     ]);
 })->name('cari_loker');
 
@@ -66,8 +73,10 @@ Route::middleware(UserCheck::class)->prefix('applynow')->controller(ApplyNowCont
     Route::get('/{loker:id}/loker', 'index')->name('applynow');
     Route::post('/upload_berkas', 'upload_berkas')->name('upload_berkas');
     Route::post('/simpan_jawaban', 'jawaban')->name('simpan_jawaban');
+    Route::delete('/batal_upload_cv', 'batal_upload_cv')->name('batal_upload_cv');
+    Route::get('jawab_pertanyaan/{loker:id}', 'jawab_pertanyaan')->name('jawab_pertanyaan');
 });
-/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+/* +++++++++++++++++++++++++++++++++++++++++s+++++++++++++++++++++++++++++++++ */
 
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
@@ -108,6 +117,7 @@ Route::middleware(AdminCheck::class)->group(function () {
     /* Kolola Pelamar */
     Route::prefix('kelola_pelamar')->controller(KelolaPelamarController::class,)->group(function () {
         Route::get('/', 'kelola_pelamar')->name('kelola_pelamar');
+        Route::get('/kelola_pelamar/{applyNow:id}/detail', 'detail_pelamar')->name('detail_pelamar');
     });
     /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
@@ -115,6 +125,9 @@ Route::middleware(AdminCheck::class)->group(function () {
     /* Pengguna */
     Route::prefix('pengguna')->controller(PenggunaController::class,)->group(function () {
         Route::get('/', 'pengguna')->name('pengguna');
+        Route::delete('/', 'proses_delete_pengguna')->name('proses_delete_pengguna');
+        Route::post('/', 'proses_update_pengguna')->name('proses_update_pengguna');
+        Route::post('/register', 'proses_daftar_admin')->name('proses_daftar_admin');
     });
     /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 });

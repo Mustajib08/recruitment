@@ -12,7 +12,7 @@ class AuthController extends Controller
 {
     public function login()
     {
-        return view('auth.login', [
+        return view('user.login', [
             'title' => 'Halaman Masuk'
         ]);
     }
@@ -41,7 +41,7 @@ class AuthController extends Controller
 
     public function register()
     {
-        return view('auth.register', [
+        return view('user.register', [
             'title' => 'Halaman Pendaftaran'
         ]);
     }

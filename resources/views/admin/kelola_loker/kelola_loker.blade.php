@@ -14,10 +14,12 @@
         <div class="row">
             <div class="col-12 grid-margin">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-header bg-gradent-secondary pt-3">
                         <h4 class="card-title">Lowongan Pekerjaan</h4>
-                        <div class="table-responsive">
-                            <table class="table">
+                    </div>
+                    <div class="card-body px-0">
+                        <div class="table-responsive px-0">
+                            <table class="table table-striped">
                                 <thead>
                                     <tr class="text-center">
                                         <th> Nama Loker </th>
@@ -25,6 +27,7 @@
                                         <th> Tanggal Dibuka </th>
                                         <th> Tanggal Berakhir </th>
                                         <th> Salari </th>
+                                        <th> Status </th>
                                         <th> Aksi </th>
                                     </tr>
                                 </thead>
@@ -41,6 +44,17 @@
                                                 </td>
                                                 <td> {{ $loker->tanggal_tutup }} </td>
                                                 <td> {{ $loker->salary }} </td>
+
+                                                <td>
+
+                                                    @if ($loker->tanggal_tutup < date('Y-m-d'))
+                                                        <label class="badge badge-gradient-info">SELESAI</label>
+                                                    @else
+                                                        <label class="badge badge-gradient-success">AKTIF</label>
+                                                    @endif
+
+                                                </td>
+
                                                 <td class="text-center">
 
                                                     <div class="btn-group btn-group-sm" role="group">

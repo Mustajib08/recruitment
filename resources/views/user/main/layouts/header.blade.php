@@ -5,7 +5,9 @@
                 <div class="col-lg-3 col-md-2">
                     <!-- Logo -->
                     <div class="logo">
-                        <a href="{{ url('/') }}"><img src="{{ asset('assets_home') }}/img/logo/logo.png"
+                        {{-- <a href="{{ url('/') }}"><img src="{{ asset('assets_home') }}/img/logo/logo.png"
+                                alt=""></a> --}}
+                        <a href="{{ url('/') }}"><img src="{{ asset('images/logo.png') }}" class="w-75 ml-50"
                                 alt=""></a>
                     </div>
                 </div>
@@ -14,8 +16,8 @@
                         <div class="main-menu">
                             <nav class="d-none d-lg-block">
                                 <ul id="navigation">
-                                    <li><a href="{{ url('/') }}">Home</a></li>
-                                    <li><a href="{{ route('cari_loker') }}">Find a Jobs </a></li>
+                                    <li><a href="{{ url('/') }}">Beranda</a></li>
+                                    <li><a href="{{ route('cari_loker') }}">Cari Lowongan </a></li>
                                 </ul>
                             </nav>
                         </div>
@@ -26,11 +28,11 @@
                                     @csrf
                                     <button type="submit" class="p-3 px-5 rounded btn head-btn2"><i
                                             class="fas fa-sign-out-alt"></i>
-                                        Logout</button>
+                                        Keluar</button>
                                 </form>
                             @else
-                                <a href="{{ route('register') }}" class="btn head-btn1">Register</a>
-                                <a href="{{ route('login') }}" class="btn head-btn2">Login</a>
+                                <a href="{{ route('register') }}" class="btn head-btn1">Daftar</a>
+                                <a href="{{ route('login') }}" class="btn head-btn2">Masuk</a>
                             @endauth
 
                         </div>

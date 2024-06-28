@@ -12,26 +12,30 @@
                                     d="M7.778,12.000 L12.222,12.000 L12.222,10.000 L7.778,10.000 L7.778,12.000 ZM-0.000,-0.000 L-0.000,2.000 L20.000,2.000 L20.000,-0.000 L-0.000,-0.000 ZM3.333,7.000 L16.667,7.000 L16.667,5.000 L3.333,5.000 L3.333,7.000 Z" />
                             </svg>
                         </div>
-                        <h4>Filter Jobs</h4>
+                        <h4>Filter Lowongan</h4>
                     </div>
                 </div>
             </div>
             <!-- Job Category Listing start -->
             <div class="job-category-listing mb-50">
                 <!-- single one -->
-                <div class="single-listing pb-50">
+                <div class="single-listing pb-10">
                     <div class="small-section-tittle2">
-                        <h4>Job Category</h4>
+                        <h4>Kategori Pekerjaan</h4>
                     </div>
-                    <!-- Select job items start -->
-                    <div class="select-job-items2">
-                        <select name="select">
-                            <option value="">All Category</option>
-                            @foreach ($kategori_lokers as $kategori_loker)
-                                <option value="{{ $kategori_loker->id }}">{{ $kategori_loker->kategori }}</option>
-                            @endforeach
-                        </select>
-                    </div>
+                    <form action="">
+                        <!-- Select job items start -->
+                        <div class="select-job-items2">
+                            <select name="kategori" id="optionKategori">
+                                <option value="">Kategori</option>
+                                @foreach ($kategori_lokers as $kategori_loker)
+                                    <option value="{{ $kategori_loker->id }}">
+                                        {{ $kategori_loker->kategori }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <button type="submit" class="btn w-100 py-4 rounded mt-3">Cari</button>
+                    </form>
                 </div>
             </div>
             <!-- Job Category Listing End -->
@@ -88,8 +92,10 @@
                     @endforeach
                 </div>
 
+                {{ $lokers->links() }}
+
                 <!--Pagination Start  -->
-                <div class="pagination-area pb-115 text-center">
+                {{-- <div class="pagination-area pb-115 text-center">
                     <div class="container">
                         <div class="row">
                             <div class="col-xl-12">
@@ -107,7 +113,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <!--Pagination End  -->
             </section>
             <!-- Featured_job_end -->

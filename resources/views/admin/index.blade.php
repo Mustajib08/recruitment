@@ -17,7 +17,7 @@
                         <h4 class="font-weight-normal mb-3">Total Loker <i
                                 class="mdi mdi-chart-line mdi-24px float-right"></i>
                         </h4>
-                        <h2 class="mb-5">$ 15,0000</h2>
+                        <h2 class="mb-5">{{ $total_loker }}</h2>
                     </div>
                 </div>
             </div>
@@ -29,7 +29,7 @@
                         <h4 class="font-weight-normal mb-3">Total Pelamar <i
                                 class="mdi mdi-bookmark-outline mdi-24px float-right"></i>
                         </h4>
-                        <h2 class="mb-5">45,6334</h2>
+                        <h2 class="mb-5">{{ $total_pelamar }}</h2>
                     </div>
                 </div>
             </div>
@@ -38,9 +38,10 @@
                     <div class="card-body">
                         <img src="{{ asset('asset_admin') }}/images/dashboard/circle.svg" class="card-img-absolute"
                             alt="circle-image" />
-                        <h4 class="font-weight-normal mb-3">Total Akun <i class="mdi mdi-diamond mdi-24px float-right"></i>
+                        <h4 class="font-weight-normal mb-3">Total Akun <i
+                                class="mdi mdi-account-multiple-outline mdi-24px float-right"></i>
                         </h4>
-                        <h2 class="mb-5">95,5741</h2>
+                        <h2 class="mb-5">{{ $total_akun }}</h2>
                     </div>
                 </div>
             </div>
@@ -48,68 +49,33 @@
         <div class="row">
             <div class="col-12 grid-margin">
                 <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">Recent Tickets</h4>
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th> Assignee </th>
-                                        <th> Subject </th>
-                                        <th> Status </th>
-                                        <th> Last Update </th>
-                                        <th> Tracking ID </th>
+                    <div class="card-header pt-3 bg-gradient-secondary">
+                        <h4>Data Admin</h4>
+                    </div>
+                    <div class="card-body px-0">
+                        <div class="table-responsive" style="margin-top: -30px">
+                            <table class="table table-striped">
+                                <thead class="">
+                                    <tr class="text-center">
+                                        <th class="fw-bold"> Nama </th>
+                                        <th class="fw-bold"> Nomor Telepon </th>
+                                        <th class="fw-bold"> Username </th>
+                                        <th class="fw-bold"> Level </th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>
-                                            <img src="{{ asset('asset_admin') }}/images/faces/face1.jpg" class="me-2"
-                                                alt="image"> David Grey
-                                        </td>
-                                        <td> Fund is not recieved </td>
-                                        <td>
-                                            <label class="badge badge-gradient-success">DONE</label>
-                                        </td>
-                                        <td> Dec 5, 2017 </td>
-                                        <td> WD-12345 </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <img src="{{ asset('asset_admin') }}/images/faces/face2.jpg" class="me-2"
-                                                alt="image"> Stella Johnson
-                                        </td>
-                                        <td> High loading time </td>
-                                        <td>
-                                            <label class="badge badge-gradient-warning">PROGRESS</label>
-                                        </td>
-                                        <td> Dec 12, 2017 </td>
-                                        <td> WD-12346 </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <img src="{{ asset('asset_admin') }}/images/faces/face3.jpg" class="me-2"
-                                                alt="image"> Marina Michel
-                                        </td>
-                                        <td> Website down for one week </td>
-                                        <td>
-                                            <label class="badge badge-gradient-info">ON HOLD</label>
-                                        </td>
-                                        <td> Dec 16, 2017 </td>
-                                        <td> WD-12347 </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <img src="{{ asset('asset_admin') }}/images/faces/face4.jpg" class="me-2"
-                                                alt="image"> John Doe
-                                        </td>
-                                        <td> Loosing control on server </td>
-                                        <td>
-                                            <label class="badge badge-gradient-danger">REJECTED</label>
-                                        </td>
-                                        <td> Dec 3, 2017 </td>
-                                        <td> WD-12348 </td>
-                                    </tr>
+                                    @foreach ($users as $user)
+                                        <tr class="text-center">
+                                            <td>
+                                                {{ $user->nama }}
+                                            </td>
+                                            <td> {{ $user->nomor_telepon }} </td>
+                                            <td>
+                                                {{ $user->username }}
+                                            </td>
+                                            <td> {{ $user->level }} </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

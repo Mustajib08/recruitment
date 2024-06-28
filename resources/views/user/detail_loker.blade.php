@@ -30,7 +30,7 @@
                         <div class="post-details1 mb-50">
                             <!-- Small Section Tittle -->
                             <div class="small-section-tittle">
-                                <h4>Job Description</h4>
+                                <h4>Deskripsi Pekerjaan</h4>
                             </div>
                             <p>{!! $loker->deskripsi_loker !!}</p>
                         </div>
@@ -42,19 +42,25 @@
                     <div class="post-details3  mb-50">
                         <!-- Small Section Tittle -->
                         <div class="small-section-tittle">
-                            <h4>Job Overview</h4>
+                            <h4>Informasi Lowongan</h4>
                         </div>
                         <ul>
-                            <li>Posted date : <span>{{ $loker->created_at->diffForHumans() }}</span></li>
-                            <li>Location : <span>New York</span></li>
-                            <li>Vacancy : <span>2 Orang</span></li>
-                            <li>Job nature : <span>Full time</span></li>
-                            <li>Salary : <span>Rp. {{ $loker->salary }}</span></li>
+                            <li>Tanggal Diposting : <span>{{ $loker->created_at->diffForHumans() }}</span></li>
+                            <li>Lokasi : <span>PT. Dunia Pratama Sejahtera</span></li>
+                            <li>Untuk : <span>2 Orang</span></li>
+                            <li>Tipe Pekerjaan : <span>Penuh Waktu</span></li>
+                            <li>Gaji : <span>Rp. {{ $loker->salary }}</span></li>
                             <li>Dibuka : <span>{{ $loker->tanggal_buka }}</span></li>
                             <li>Berakhir : <span>{{ $loker->tanggal_tutup }}</span></li>
                         </ul>
                         <div class="apply-btn2">
-                            <a href="{{ route('applynow', $loker->id) }}" class="btn">Apply Now</a>
+                            @if ($loker->tanggal_tutup > date('Y-m-d'))
+                                <a href="{{ route('applynow', $loker->id) }}" class="btn">Apply Now</a>
+                            @else
+                                <div class="alert alert-primary" role="alert">
+                                    Pendaftaran Sudah Ditutup
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>

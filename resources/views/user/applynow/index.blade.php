@@ -86,21 +86,34 @@
                             @endif
                         </div>
                         @if (!empty($data_apply->cv_user))
-                            <button type="submit" name="submit" id="newsletter-submit"
-                                class="btn py-3 px-5 rounded mt-4 mb-2 float-right"><i class="far fa-window-close"></i>
-                                Batal
-                                Upload</button>
                         @else
                             <button type="submit" name="submit" id="newsletter-submit"
-                                class="btn py-3 px-5 rounded mt-4 mb-2 float-right"><i class="fas fa-upload"></i> Upload
+                                class="btn py-3 px-5 rounded mt-4 mb-2 float-right"><i class="fas fa-upload"></i>
+                                Upload
                                 Berkas</button>
                         @endif
                     </form>
+                    @if (!empty($data_apply->cv_user))
+                        <form action="{{ route('batal_upload_cv') }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <input type="hidden" name="idApplyNow"
+                                value="{{ $data_apply->id }}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ">
+                            <button type="submit" class="btn py-3 px-5 rounded mt-4 mb-2 float-right"><i
+                                    class="far fa-window-close"></i>
+                                Batal
+                                Upload</button>
+                        </form>
+
+                        <a href="{{ route('jawab_pertanyaan', $loker->id) }}"
+                            class="btn py-3 px-5 rounded mt-4 mb-2 float-right mr-1">
+                            Jawab Pertanyaan <i class="fas fa-arrow-circle-right"></i></a>
+                    @endif
                 </div>
 
             </div>
 
-            @if (!empty($data_apply->cv_user))
+            {{-- @if (!empty($data_apply->cv_user))
                 <div class="card mt-5">
                     <div class="card-header">
                         Jawab Pertanyaan
@@ -124,7 +137,7 @@
                         </form>
                     </div>
                 </div>
-            @endif
+            @endif --}}
         </div>
     </div>
 @endsection

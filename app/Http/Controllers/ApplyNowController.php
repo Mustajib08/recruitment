@@ -44,7 +44,7 @@ class ApplyNowController extends Controller
             'alamat' => $request->alamat
         ]);
 
-        Alert::toast('Berhasil Melengkapi Berkas Persyaratan', 'success');
+        toast('Berhasil Melengkapi Berkas Persyaratan', 'success');
         return back();
     }
 
@@ -59,7 +59,29 @@ class ApplyNowController extends Controller
             ]);
         }
 
-        Alert::toast('Jawaban Tersimpan, Silahkan Menunggu Keputusan HRD melalui Whatsapp / Email', 'success');
+        toast('Jawaban Tersimpan, Silahkan Menunggu Keputusan HRD melalui Whatsapp / Email', 'success');
         return redirect()->back();
+    }
+
+    public function batal_upload_cv(Request $request)
+    {
+        ApplyNow::where('id', $request->idApplyNow)->delete();
+
+        toast('CV batal di upload', 'success', 'text');
+        return back();
+    }
+
+    public function jawab_pertanyaan(Request $request, Loker $loker)
+    {
+        $jawaban = Jawaban::where('user_id', auth()->user()->id)
+            ->join('pertanyaans', 'pertanyaans.id', '=', 'jawabans.pertanyaan_id')
+            ->where('pertanyaans.loker_id', $loker->id)
+            ->get();
+
+        return view('user.applynow.jawab_pertanyaan', [
+            'title' => 'Jawab Pertanyaan',
+            'pertanyaan' => Pertanyaan::where('loker_id', $loker->id)->get(),
+            'jawaban' => $jawaban
+        ]);
     }
 }

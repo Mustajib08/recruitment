@@ -10,4 +10,9 @@ class Pertanyaan extends Model
     use HasFactory;
 
     public $guarded = ['id'];
+
+    public function jawaban()
+    {
+        return $this->hasOne(Jawaban::class, 'pertanyaan_id');
+    }
 }

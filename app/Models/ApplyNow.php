@@ -10,4 +10,14 @@ class ApplyNow extends Model
     use HasFactory;
 
     public $guarded = ['id'];
+
+    public function loker()
+    {
+        return $this->belongsTo(Loker::class, 'loker_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

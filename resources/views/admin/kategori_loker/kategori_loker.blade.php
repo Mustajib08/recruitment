@@ -14,10 +14,12 @@
         <div class="row">
             <div class="col-12 grid-margin">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-header bg-gradient-secondary pt-3">
                         <h4 class="card-title">Kategori Pekerjaan</h4>
+                    </div>
+                    <div class="card-body px-0">
                         <div class="table-responsive">
-                            <table class="table">
+                            <table class="table table-striped">
                                 <thead>
                                     <tr class="text-center">
                                         <th> Kategori </th>
@@ -28,7 +30,7 @@
                                 <tbody>
                                     @if ($kategori_loker->count() > 0)
                                         @foreach ($kategori_loker as $kl)
-                                            <tr>
+                                            <tr class="text-center">
                                                 <td>
                                                     {{ $kl->kategori }}
                                                 </td>
