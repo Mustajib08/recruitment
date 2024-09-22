@@ -40,8 +40,7 @@ class ApplyNowController extends Controller
             'user_id' => 'required',
             'alamat' => 'required',
         ]);
-        
-        
+
         // Simpan file dan dapatkan path-nya
         $path = $request->file('file')->store('cv_users', 'public');
 
@@ -61,12 +60,14 @@ class ApplyNowController extends Controller
     public function jawaban(Request $request)
     {
         $data = $request->all();
-        foreach ($data['pertanyaan'] as $pertanyaanId => $jawaban) {
-            Jawaban::create([
-                'user_id' => auth()->user()->id,
-                'pertanyaan_id' => $pertanyaanId,
-                'jawaban' => $jawaban,
-            ]);
+        if(isset($data['pertanyaan']) && count($data['pertanyaan']) > 0){
+            foreach ($data['pertanyaan'] as $pertanyaanId => $jawaban) {
+                Jawaban::create([
+                    'user_id' => auth()->user()->id,
+                    'pertanyaan_id' => $pertanyaanId,
+                    'jawaban' => $jawaban,
+                ]);
+            }
         }
 
         toast('Jawaban Tersimpan, Silahkan Menunggu Keputusan HRD melalui Whatsapp / Email', 'success');
