@@ -8,6 +8,7 @@ use App\Models\Jawaban;
 use App\Models\Pertanyaan;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Validator;
 
 class ApplyNowController extends Controller
 {
@@ -32,11 +33,18 @@ class ApplyNowController extends Controller
 
     public function upload_berkas(Request $request)
     {
+        // Validasi hanya untuk file PDF
         $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'file' => 'required|mimes:pdf|max:2048', // hanya file PDF yang diperbolehkan, maksimal 2MB
+            'loker_id' => 'required',
+            'user_id' => 'required',
+            'alamat' => 'required',
         ]);
 
-        $path = $request->file('image')->store('cv_users', 'public');
+        // Simpan file dan dapatkan path-nya
+        $path = $request->file('file')->store('cv_users', 'public');
+
+        // Simpan path di database
         ApplyNow::create([
             'loker_id' => $request->loker_id,
             'user_id' => $request->user_id,
@@ -48,15 +56,18 @@ class ApplyNowController extends Controller
         return back();
     }
 
+
     public function jawaban(Request $request)
     {
         $data = $request->all();
-        foreach ($data['pertanyaan'] as $pertanyaanId => $jawaban) {
-            Jawaban::create([
-                'user_id' => auth()->user()->id,
-                'pertanyaan_id' => $pertanyaanId,
-                'jawaban' => $jawaban,
-            ]);
+        if(isset($data['pertanyaan']) && count($data['pertanyaan']) > 0){
+            foreach ($data['pertanyaan'] as $pertanyaanId => $jawaban) {
+                Jawaban::create([
+                    'user_id' => auth()->user()->id,
+                    'pertanyaan_id' => $pertanyaanId,
+                    'jawaban' => $jawaban,
+                ]);
+            }
         }
 
         toast('Jawaban Tersimpan, Silahkan Menunggu Keputusan HRD melalui Whatsapp / Email', 'success');
@@ -85,3 +96,4 @@ class ApplyNowController extends Controller
         ]);
     }
 }
+

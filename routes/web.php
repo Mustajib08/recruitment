@@ -75,6 +75,8 @@ Route::middleware(UserCheck::class)->prefix('applynow')->controller(ApplyNowCont
     Route::post('/simpan_jawaban', 'jawaban')->name('simpan_jawaban');
     Route::delete('/batal_upload_cv', 'batal_upload_cv')->name('batal_upload_cv');
     Route::get('jawab_pertanyaan/{loker:id}', 'jawab_pertanyaan')->name('jawab_pertanyaan');
+    Route::get('jawab_pertanyaan/{loker:id}', 'jawab_pertanyaan')->name('jawab_pertanyaan');
+    // Route::post('status/{id}', 'update_status')->name('update_status');
 });
 /* +++++++++++++++++++++++++++++++++++++++++s+++++++++++++++++++++++++++++++++ */
 
@@ -118,6 +120,7 @@ Route::middleware(AdminCheck::class)->group(function () {
     Route::prefix('kelola_pelamar')->controller(KelolaPelamarController::class,)->group(function () {
         Route::get('/', 'kelola_pelamar')->name('kelola_pelamar');
         Route::get('/kelola_pelamar/{applyNow:id}/detail', 'detail_pelamar')->name('detail_pelamar');
+        Route::post('/update_status', 'update_status')->name('update_status_pelamar');
     });
     /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 

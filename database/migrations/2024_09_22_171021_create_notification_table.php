@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('apply_nows', function (Blueprint $table) {
+        Schema::create('notifications', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('loker_id');
             $table->foreignId('user_id');
-            $table->text('cv_user');
-            $table->text('alamat');
-            $table->enum('status', ['pending', 'accepted', 'rejected'])->default('pending'); 
+            $table->string('description');
+            $table->string('loker_name');
             $table->timestamps();
         });
     }
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('apply_nows');
+        Schema::dropIfExists('notification');
     }
 };

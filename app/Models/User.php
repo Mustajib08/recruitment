@@ -20,4 +20,9 @@ class User extends Authenticatable
     protected $guarded = [
         'id',
     ];
+
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class, 'user_id');
+    }
 }

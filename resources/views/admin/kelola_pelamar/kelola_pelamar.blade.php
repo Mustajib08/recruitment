@@ -24,6 +24,7 @@
                                         <th> Nomor Telepon </th>
                                         <th> Loker yang dilamar </th>
                                         <th> Lamaran Masuk </th>
+                                        <th> Status </th>
                                         <th width="50"> # </th>
                                     </tr>
                                 </thead>
@@ -35,6 +36,15 @@
                                                 <td> {{ $kp->user->nomor_telepon }} </td>
                                                 <td> {{ $kp->loker->nama_loker }} </td>
                                                 <td class="text-center"> {{ $kp->created_at }} </td>
+                                                @if ($kp->status == 'pending')
+                                                <td class="text-center"> <span style="background-color: yellow; padding:5px; border-radius:10px;">{{ $kp->status }}</span> </td>
+                                                @endif
+                                                @if ($kp->status == 'accepted')
+                                                <td class="text-center"> <span style="background-color: greenyellow; padding:5px; border-radius:10px;">{{ $kp->status }}</span> </td>
+                                                @endif
+                                                @if ($kp->status == 'rejected')
+                                                <td class="text-center"> <span style="background-color: salmon; padding:5px; border-radius:10px;">{{ $kp->status }}</span> </td>
+                                                @endif
                                                 <td class="text-center">
 
                                                     <div class="btn-group btn-group-sm" role="group">

@@ -47,6 +47,7 @@ class KelolaLokerController extends Controller
             'salary' => $request->salari,
             'tipe_bekerja' => $request->tipe,
             'deskripsi_loker' => $request->deskripsi,
+            'status' => 'pending'
         ]);
 
         Alert::toast('Berhasil Menambahkan Lowongan', 'success')->width('auto');
