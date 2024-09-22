@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Jawaban;
 use App\Models\ApplyNow;
 use App\Models\Pertanyaan;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -41,9 +42,21 @@ class KelolaPelamarController extends Controller
         }
 
         // KategoriLoker::create($request->all());
-        $applyNow = ApplyNow::find($request->pelamar_id)->update([
-            'status' => $request->status
-        ]);;
+        $applyNow = ApplyNow::find($request->pelamar_id); // Fetch the record first
+
+        $applyNow->update([
+            'status' => $request->status // Perform the update
+        ]);
+        $loker_name = $applyNow->loker['nama_loker'];
+        $user_id = $applyNow['user_id'];
+        $description = $applyNow['status'];
+        
+        Notification::create([
+            'user_id' => $user_id, 
+            'description' => $description,
+            'loker_name' => $loker_name,
+        ]);        
+
         // $applyNow->status = $request->status;
         Alert::toast('Berhasil Mengupdate Status Pelamar', 'success')->width('auto');
         return back();
