@@ -8,6 +8,7 @@ use App\Models\Jawaban;
 use App\Models\Pertanyaan;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Validator;
 
 class ApplyNowController extends Controller
 {
@@ -32,11 +33,19 @@ class ApplyNowController extends Controller
 
     public function upload_berkas(Request $request)
     {
+        // Validasi hanya untuk file PDF
         $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'file' => 'required|mimes:pdf|max:2048', // hanya file PDF yang diperbolehkan, maksimal 2MB
+            'loker_id' => 'required',
+            'user_id' => 'required',
+            'alamat' => 'required',
         ]);
+        
+        
+        // Simpan file dan dapatkan path-nya
+        $path = $request->file('file')->store('cv_users', 'public');
 
-        $path = $request->file('image')->store('cv_users', 'public');
+        // Simpan path di database
         ApplyNow::create([
             'loker_id' => $request->loker_id,
             'user_id' => $request->user_id,
@@ -47,6 +56,7 @@ class ApplyNowController extends Controller
         toast('Berhasil Melengkapi Berkas Persyaratan', 'success');
         return back();
     }
+
 
     public function jawaban(Request $request)
     {
@@ -85,3 +95,4 @@ class ApplyNowController extends Controller
         ]);
     }
 }
+

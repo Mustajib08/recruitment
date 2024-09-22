@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->text('cv_user');
             $table->text('alamat');
+            $table->enum('status', ['pending', 'accepted', 'rejected'])->default('pending'); 
             $table->timestamps();
         });
     }

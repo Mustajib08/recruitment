@@ -79,10 +79,11 @@
                                 @endif
                             </label>
                             @if (!empty($data_apply->cv_user))
-                                <img src="{{ asset('storage/' . $data_apply->cv_user) }}" class="img-fluid single-input"
-                                    alt="CV">
+                            <a href="{{ asset('storage/' . $data_apply->cv_user) }}" class="btn py-3 px-2 rounded mt-4 mb-2 mr-1 ml-3" style="height: fit-content !important; " target="_blank">
+                                Lihat CV (PDF)
+                            </a>
                             @else
-                                <input id="gambar" type="file" required class="single-input" name="image">
+                                <input id="gambar" type="file" required class="single-input" name="file" accept="application/pdf">
                             @endif
                         </div>
                         @if (!empty($data_apply->cv_user))
