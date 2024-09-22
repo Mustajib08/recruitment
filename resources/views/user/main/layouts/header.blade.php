@@ -24,25 +24,31 @@
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bell" viewBox="0 0 16 16">
                                                 <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2M8 1.918l-.797.161A4 4 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4 4 0 0 0-3.203-3.92zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5 5 0 0 1 13 6c0 .88.32 4.2 1.22 6"/>
                                             </svg>
-                                            <div class="bg-primary text-white" style="border-radius: 100%; width:13px;height:13px; font-size:xx-small; position:absolute; top:0; right:-8px; text-align:center">1</div>
-                                            
+                                            @if (auth()->user() && count(auth()->user()->notifications) > 0)
+                                            <div class="bg-primary text-white" style="border-radius: 100%; width:13px;height:13px; font-size:xx-small; position:absolute; top:0; right:-8px; text-align:center">{{count(auth()->user()->notifications)}}</div>
+                                            @endif
                                             </div>
 
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="height: 300px;width:300px; overflow:scroll;">
-                                                <p class="dropdown-item" href="#" style="font-size: 12px;">
-                                                    <b>10 Maret 20</b><br>
-                                                    Untuk Saat Ini Anda Belum Sesuai Untuk Posisi <br>UX/Ui.
-                                                    <hr style="margin-top: 0;">
-                                                </p>
-                                                <p class="dropdown-item" href="#" style="font-size: 12px;">
-                                                    <b>10 Maret 20</b><br>
-                                                    Selamat Anda Di Terima Untuk Posisi UX/Ui, <br>
-                                                    Admin Akan Segera Menghubungi Anda <br>
-                                                    Melalui Whatsapp/Email.<br>
-                                                    <hr style="margin-top: 0;">
-                                                </p>
-                                               
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="height: 300px; width: 350px; overflow: auto;">
+                                            @if (auth()->user()) 
+                                                @foreach (auth()->user()->notifications as $notification)
+                                                    <div class="dropdown-item" style="font-size: 12px; margin: 0; padding: 5px; word-wrap: break-word;">
+                                                        <b>{{ \Carbon\Carbon::parse($notification->created_at)->format('d M Y H:i') }}</b><br>
+                                                        @if (str_contains($notification->description, 'accepted'))
+                                                            Selamat Anda Di Terima Untuk Posisi {{ $notification->loker_name }}, Admin <br>
+                                                            Akan Segera Menghubungi Anda Melalui Whatsapp/Email.
+                                                        @else
+                                                            Untuk Saat Ini Anda Belum Sesuai Untuk Posisi {{ $notification->loker_name }}.<br>
+                                                        @endif
+                                                        <hr style="margin: 5px 0;">
+                                                    </div>
+                                                @endforeach
+                                            @endif
                                             </div>
+
+
+
+
                                         </div>
                                     </li>
                                 </ul>
